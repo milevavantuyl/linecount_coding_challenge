@@ -62,6 +62,21 @@ def dir_line_count(directory, extension = ".txt"):
     return files_and_counts
 
 if __name__ == "__main__":
-    print(file_line_count(os.path.join('./unit_test_files_copy', '4_lines.csv')))
-    print(dir_line_count('./unit_test_files_copy'))
-    print(dir_line_count('./unit_test_files_copy', '.csv'))
+    # User testing with txt and csv files
+    print("# Lines in txt file (5):",
+        file_line_count(os.path.join('./sample_dir_for_testing', '5_lines.txt')))
+    print("# Lines in csv file (4):",
+        file_line_count(os.path.join('./sample_dir_for_testing', '4_lines.csv')))
+
+    # User testing with pdf, doc, docx, and xlsx files
+    print("# Lines in pdf file (162):",
+        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.pdf')))
+    print("# Lines in doc file (52):",
+        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.doc')))
+    print("# Lines in docx file (71):",
+        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.docx')))
+    print("# Lines in xlsx file (48):",
+        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.xlsx')))
+
+    # User testing of the full program
+    print(dir_line_count('./sample_dir_for_testing'))

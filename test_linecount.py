@@ -70,7 +70,6 @@ class TestLineCount(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-
         # Remove all files created during setup
         for dirpath, _, filenames in os.walk(cls.directory_path):
             for filename in filenames:
@@ -102,7 +101,7 @@ class TestLineCount(unittest.TestCase):
         # Test 4 - A txt file containing 3 empty lines
         self.assertEqual(file_line_count(os.path.join(subdirectory_path, "3_empty_lines.txt")), 3)
 
-        # Test 5 - A csv file
+        # Test 5 - A csv file with 100 lines
         self.assertEqual(file_line_count(os.path.join(subdirectory_path, "100_lines.csv")), 100)
 
     def test_dir_line_count(self):
@@ -164,7 +163,7 @@ class TestLineCount(unittest.TestCase):
         ])
 
         # Test 4 - Extension that isn't txt (e.g. csv):
-        # Finds the pdf files and computes the number of lines
+        # Finds the csv files and computes the number of lines
         self.assertListEqual(dir_line_count(directory_path, '.csv'),
             [(os.path.join(directory_path, '4_lines.csv'), 4),
             (os.path.join(subdirectory_path, '100_lines.csv'), 100),
