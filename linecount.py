@@ -1,8 +1,8 @@
 """ File and Directory Line Counter
 
-This program allows the user to compute the number of lines in files
-with a given extension and stored in a given directory. It outputs the
-number of corresponding files, the total number of lines,
+This program finds the number of lines in all files with the given extension
+and located within the given directory.
+It outputs statistics on the number of files, the total number of lines,
 and the average number of lines per file.
 
 The program has been tested for files with .txt, .csv, and .pdf extensions.
@@ -16,7 +16,7 @@ This file contains the following functions:
 
     * file_line_count - returns the number of lines in a given file
     * dir_line_count - returns a list of all files with the extension and their line counts
-    * main - allows for quick testing via the command line
+    * main - enables users to access the dir_line_count function from the command line
 
 """
 
@@ -39,7 +39,7 @@ def dir_line_count(directory, extension = ".txt"):
         for filename in filenames:
             all_files.append(os.path.join(dirpath, filename))
 
-    # Get line counts of files with the gien extension
+    # Get the line counts of the files with the given extension
     files_with_extension = []
     line_counts = []
     for file in all_files:
@@ -67,11 +67,11 @@ if __name__ == "__main__":
     user_args = sys.argv
     print("User provided arguments:", user_args[1:])
 
-    # Directory is provided
+    # Only the directory path is provided to the function
     if len(user_args) == 2:
         dir_line_count(sys.argv[1])
 
-    # Directory and filename extension are provided
+    # The directory path and filename extension are provided to the function
     elif len(user_args) == 3:
         if sys.argv[2][0] != '.':
             print('''The filename extension is incorrectly. Examples of proper formatting:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         else:
             dir_line_count(sys.argv[1], sys.argv[2])
 
-    # Provided an incorrect number of arguments
+    # An incorrect number of arguments are passed to the function
     else:
         print('''This program expects one or two arguments:
         Arg1: string, directory path,
