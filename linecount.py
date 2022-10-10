@@ -16,7 +16,7 @@ This file contains the following functions:
 
     * file_line_count - returns the number of lines in a given file
     * dir_line_count - returns a list of all files with the extension and their line counts
-    * main - allows for quick user testing of the program as desired
+    * main - allows for quick testing via the command line
 
 """
 
@@ -26,8 +26,8 @@ import numpy as np
 
 def file_line_count(filepath):
     """Return the number of lines within the file. An error is raised if the filepath is invalid."""
-    with open(filepath, errors="replace") as file:
-        num_lines = sum([1 for line in file])
+    with open(filepath, encoding='utf-8', errors="replace") as file:
+        num_lines = sum(1 for line in file)
     return num_lines
 
 def dir_line_count(directory, extension = ".txt"):

@@ -42,30 +42,31 @@ class TestLineCount(unittest.TestCase):
         file_2_contents = []
         file_3_contents = ["\n", "\n", "\n"]
 
-        with open(os.path.join(cls.directory_path, "5_lines.txt"), "a") as out_file:
-            out_file.writelines(file_1_contents)
+        with open(os.path.join(cls.directory_path, "5_lines.txt"), "a", encoding='utf-8') as out:
+            out.writelines(file_1_contents)
 
-        with open(os.path.join(cls.directory_path, "empty_file.txt"), "a") as out_file:
-            out_file.writelines(file_2_contents)
+        with open(os.path.join(cls.directory_path, "empty_file.txt"), "a", encoding='utf-8') as out:
+            out.writelines(file_2_contents)
 
-        with open(os.path.join(cls.subdirectory_path, "3_empty_lines.txt"), "a") as out_file:
-            out_file.writelines(file_3_contents)
+        with open(os.path.join(cls.subdirectory_path, "3_empty_lines.txt"),
+                    "a", encoding='utf-8') as out:
+            out.writelines(file_3_contents)
 
         # Populate the nested directory with .csv testing files
         file_4_contents = np.arange(0, 20).reshape(4,5)
         file_5_contents = np.arange(0, 100).reshape(20,5)
         file_6_contents = np.arange(0, 100).reshape(100,1)
 
-        with open(os.path.join(cls.directory_path, '4_lines.csv'), 'w') as csv_file:
-            writer = csv.writer(csv_file)
+        with open(os.path.join(cls.directory_path, '4_lines.csv'), 'w', encoding='utf-8') as out:
+            writer = csv.writer(out)
             writer.writerows(file_4_contents)
 
-        with open(os.path.join(cls.subdirectory_path, '20_lines.csv'), 'w') as csv_file:
-            writer = csv.writer(csv_file)
+        with open(os.path.join(cls.subdirectory_path, '20_lines.csv'),'w', encoding='utf-8') as out:
+            writer = csv.writer(out)
             writer.writerows(file_5_contents)
 
-        with open(os.path.join(cls.subdirectory_path, '100_lines.csv'), 'w') as csv_file:
-            writer = csv.writer(csv_file)
+        with open(os.path.join(cls.subdirectory_path, '100_lines.csv'),'w',encoding='utf-8') as out:
+            writer = csv.writer(out)
             writer.writerows(file_6_contents)
 
     @classmethod
