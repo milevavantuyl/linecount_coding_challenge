@@ -21,6 +21,7 @@ This file contains the following functions:
 """
 
 import os
+import sys
 import numpy as np
 
 def file_line_count(filepath):
@@ -62,21 +63,43 @@ def dir_line_count(directory, extension = ".txt"):
     return files_and_counts
 
 if __name__ == "__main__":
-    # User testing with txt and csv files
-    print("# Lines in txt file (5):",
-        file_line_count(os.path.join('./sample_dir_for_testing', '5_lines.txt')))
-    print("# Lines in csv file (4):",
-        file_line_count(os.path.join('./sample_dir_for_testing', '4_lines.csv')))
 
-    # User testing with pdf, doc, docx, and xlsx files
-    print("# Lines in pdf file (162):",
-        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.pdf')))
-    print("# Lines in doc file (52):",
-        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.doc')))
-    print("# Lines in docx file (71):",
-        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.docx')))
-    print("# Lines in xlsx file (48):",
-        file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.xlsx')))
+    user_args = sys.argv
+    print("User provided arguments:", user_args[1:])
 
-    # User testing of the full program
-    print(dir_line_count('./sample_dir_for_testing'))
+    # Directory is provided
+    if len(user_args) == 2:
+        dir_line_count(sys.argv[1])
+
+    # Directory and filename extension are provided
+    elif len(user_args) == 3:
+        if sys.argv[2][0] != '.':
+            print('''The filename extension is incorrectly. Examples of proper formatting:
+            \'.txt\' or \'.csv\'''')
+        else:
+            dir_line_count(sys.argv[1], sys.argv[2])
+
+    # Provided an incorrect number of arguments
+    else:
+        print('''This program expects one or two arguments:
+        Arg1: string, directory path,
+        Arg2 (optional): string, filename extension''')
+
+    # # User testing with txt and csv files
+    # print("# Lines in txt file (5):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', '5_lines.txt')))
+    # print("# Lines in csv file (4):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', '4_lines.csv')))
+
+    # # User testing with pdf, doc, docx, and xlsx files
+    # print("# Lines in pdf file (162):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.pdf')))
+    # print("# Lines in doc file (52):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.doc')))
+    # print("# Lines in docx file (71):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.docx')))
+    # print("# Lines in xlsx file (48):",
+    #     file_line_count(os.path.join('./sample_dir_for_testing', 'sample_1.xlsx')))
+
+    # # User testing of the full program
+    # print(dir_line_count('./sample_dir_for_testing'))
