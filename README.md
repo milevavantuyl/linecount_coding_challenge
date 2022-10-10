@@ -9,12 +9,12 @@ At this time, the program has been tested for txt, csv, pdf, xlsx, doc, and docx
 To run this program:
 
 1. Clone this repository from GitHub.
-2. (Optional) Create a virtual environment with a Python environemnt manager like Conda.
-`conda create -n linecount python numpy pylint`
-`conda activate linecount`
+2. (Optional) Create a virtual environment with a Python environemnt manager like Conda.  
+`conda create -n linecount python numpy pylint`  
+`conda activate linecount`  
 3. Navigate to the repository in your terminal.
-4. Run the program from the command line as desired:
-`python linecount.py sample_dir_for_testing`
+4. Run the program from the command line as desired:  
+`python linecount.py sample_dir_for_testing`  
 `python linecount.py sample_dir_for_testing .csv`
 
 ## Contents
