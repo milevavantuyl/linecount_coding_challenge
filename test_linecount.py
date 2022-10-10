@@ -84,29 +84,40 @@ class TestLineCount(unittest.TestCase):
 
     def test_file_line_count(self):
         """ Test the function linecount.file_line_count. """
+        print("----------------------------------------")
+        print("Unit tests for linecount.file_line_count")
+        print("----------------------------------------")
 
         # Paths to the directories defined in set up
         directory_path = './unit_test_files'
         subdirectory_path = os.path.join(directory_path, 'some_other_files')
 
         # Test 1 - An invalid file path: Triggers a file not found error
+        print("Test 1: An invalid file path: Triggers a file not found error")
         self.assertRaises(FileNotFoundError, file_line_count,
                         os.path.join(directory_path, "nonexistent_file.txt"))
 
         # Test 2 - A normal txt file with 5 lines
+        print("Test 2: A normal txt file with 5 lines")
         self.assertEqual(file_line_count(os.path.join(directory_path, "5_lines.txt")), 5)
 
         # Test 3 - An empty text file with 0 lines
+        print("Test 3: An empty text file with 0 lines")
         self.assertEqual(file_line_count(os.path.join(directory_path, "empty_file.txt")), 0)
 
         # Test 4 - A txt file containing 3 empty lines
+        print("Test 4: A txt file containing 3 empty lines")
         self.assertEqual(file_line_count(os.path.join(subdirectory_path, "3_empty_lines.txt")), 3)
 
         # Test 5 - A csv file with 100 lines
+        print("Test 5: A csv file with 100 lines")
         self.assertEqual(file_line_count(os.path.join(subdirectory_path, "100_lines.csv")), 100)
 
     def test_dir_line_count(self):
         """ Test the function linecount.dir_line_count. """
+        print("----------------------------------------")
+        print("Unit tests for linecount.dir_line_count")
+        print("----------------------------------------")
 
         # Paths to the directories defined in set up
         directory_path_empty = './unit_test_files_empty'
@@ -126,18 +137,21 @@ class TestLineCount(unittest.TestCase):
         ]
 
         # Test 1 - An invalid directory path: Finds 0 files and returns no errors
+        print("\nTest 1: An invalid directory path: Finds 0 files and returns no errors")
         self.assertListEqual(dir_line_count('./invalid_directory_path'), [])
         with mock.patch('sys.stdout') as mocked_stdout:
             dir_line_count('./invalid_directory_path')
         mocked_stdout.assert_has_calls(no_files_expected_stdout)
 
         # Test 2 - A path to an empty directory: Finds 0 files and returns no errors
+        print("\nTest 2: A path to an empty directory: Finds 0 files and returns no errors")
         self.assertListEqual(dir_line_count(directory_path_empty), [])
         with mock.patch('sys.stdout') as mocked_stdout:
             dir_line_count(directory_path_empty)
         mocked_stdout.assert_has_calls(no_files_expected_stdout)
 
         # Test 3 - No extension provided: Finds .txt files and computes the number of lines
+        print("\nTest 3: No extension provided: Finds .txt files and computes the number of lines")
         self.assertListEqual(dir_line_count(directory_path),
             [(os.path.join(directory_path, "empty_file.txt"), 0),
             (os.path.join(directory_path, "5_lines.txt"), 5),
@@ -165,6 +179,7 @@ class TestLineCount(unittest.TestCase):
 
         # Test 4 - Extension that isn't txt (e.g. csv):
         # Finds the csv files and computes the number of lines
+        print("\nTest 4: Extension that isn't txt (e.g. csv): Finds csv files and number of lines")
         self.assertListEqual(dir_line_count(directory_path, '.csv'),
             [(os.path.join(directory_path, '4_lines.csv'), 4),
             (os.path.join(subdirectory_path, '100_lines.csv'), 100),
