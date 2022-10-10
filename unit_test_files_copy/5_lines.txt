@@ -1,0 +1,5 @@
+5_lines.txt
+Regular txt file
+Line 1, 
+... 
+5 Lines in total!
